@@ -9,13 +9,17 @@ function App() {
     scriptElement.src = 'https://telegram.org/js/telegram-widget.js?22';
     scriptElement.setAttribute('data-telegram-login', 'getsmsandroidbot');
     scriptElement.setAttribute('data-size', 'large');
-    scriptElement.setAttribute('data-auth-url', '/auth/telegram');
+    scriptElement.setAttribute('data-onauth', 'loginViaTelegram(user)');
     scriptElement.async = true;
   
     if (telegramWrapperRef.current) {
       telegramWrapperRef.current.appendChild(scriptElement);
     }
   }, []);
+
+  (window as any).loginViaTelegram = (user: any) => {
+    console.log('user', user);
+  }
 
   return (
     <> 
